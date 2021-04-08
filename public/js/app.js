@@ -2184,6 +2184,7 @@ var NewTest = /*#__PURE__*/function (_Component) {
       showResults: null,
       showTextBox: false,
       showRadioBox: false,
+      showDiagnosedRadioBox: true,
       showHyperRadioBox: false,
       showHyperTextBox: false,
       showConsultTextBox: false,
@@ -2227,6 +2228,8 @@ var NewTest = /*#__PURE__*/function (_Component) {
         isdiabetic: isdiabetic
       });
       this.setState({
+        showDiagnosedRadioBox: false,
+        isdiagnosed: null,
         showHyperTextBox: isdiabetic,
         hypertension: null,
         showConsultTextBox: false,
@@ -2251,7 +2254,11 @@ var NewTest = /*#__PURE__*/function (_Component) {
         hypertension: hypertension
       });
       this.setState({
-        showConsultTextBox: hypertension
+        showConsultTextBox: hypertension,
+        showDiagnosedRadioBox: false,
+        showRadioBox: false,
+        isdiagnosed: null,
+        isdiabetic: null
       });
 
       if (!hypertension) {
@@ -2276,6 +2283,7 @@ var NewTest = /*#__PURE__*/function (_Component) {
       var showHyperTextBox = this.state.showHyperTextBox;
       var showConsultTextBox = this.state.showConsultTextBox;
       var showResultTextBox = this.state.showResultTextBox;
+      var showDiagnosedRadioBox = this.state.showDiagnosedRadioBox;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "container py-4",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -2291,33 +2299,35 @@ var NewTest = /*#__PURE__*/function (_Component) {
                 className: "card-body",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
                   onSubmit: this._handleSubmit,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                    className: "form-group",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                      children: "Have you been diagnosed positive for ABC test ?"
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                    className: "radio",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                        type: "radio",
-                        name: "isdiagnosed",
-                        value: "true",
-                        checked: isdiagnosed === true,
-                        onChange: this._handlediagnosis
-                      }), " Yes"]
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                    className: "radio",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                        type: "radio",
-                        name: "isdiagnosed",
-                        value: "false",
-                        checked: isdiagnosed === false,
-                        onChange: this._handlediagnosis
-                      }), " No"]
-                    })
+                  children: [showDiagnosedRadioBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                      className: "form-group",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                        children: "Have you been diagnosed positive for ABC test ?"
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                      className: "radio",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                          type: "radio",
+                          name: "isdiagnosed",
+                          value: "true",
+                          checked: isdiagnosed === true,
+                          onChange: this._handlediagnosis
+                        }), " Yes"]
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                      className: "radio",
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                          type: "radio",
+                          name: "isdiagnosed",
+                          value: "false",
+                          checked: isdiagnosed === false,
+                          onChange: this._handlediagnosis
+                        }), " No"]
+                      })
+                    })]
                   }), showTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                       className: "form-group",

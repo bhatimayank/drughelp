@@ -11,6 +11,7 @@ class NewTest extends Component {
 			    		showResults: null,
 					showTextBox: false,
 					showRadioBox: false,
+					showDiagnosedRadioBox: true,
 					showHyperRadioBox: false,
 					showHyperTextBox: false,
 					showConsultTextBox: false,
@@ -45,6 +46,8 @@ class NewTest extends Component {
 		      const isdiabetic = event.currentTarget.value === 'true' ? true: false;
 		      this.setState({ isdiabetic });
 		      this.setState({
+				showDiagnosedRadioBox: false,
+				isdiagnosed: null,
       				showHyperTextBox: isdiabetic,
 				hypertension: null,
 				showConsultTextBox: false,
@@ -65,7 +68,11 @@ class NewTest extends Component {
 		  const hypertension = event.currentTarget.value === 'true' ? true: false;
 		  this.setState({ hypertension });
 		  this.setState({
-      				showConsultTextBox: hypertension
+      				showConsultTextBox: hypertension,
+				showDiagnosedRadioBox: false,
+				showRadioBox: false,
+				isdiagnosed: null,
+				isdiabetic: null,
     		      });
 		      if(!hypertension){
 			this.setState({
@@ -88,6 +95,7 @@ class NewTest extends Component {
 		      const { showHyperTextBox } = this.state;
 		      const { showConsultTextBox } = this.state;
 		      const { showResultTextBox } = this.state;
+		      const { showDiagnosedRadioBox } = this.state;
 
 		      return (
 			      <div className='container py-4'>
@@ -97,6 +105,8 @@ class NewTest extends Component {
 			                        <div className='card-header'>Check for Test</div>
 			                        <div className='card-body'>
 			            <form onSubmit={this._handleSubmit}>
+				     {showDiagnosedRadioBox &&
+					<div>
 			      		<div className='form-group'>
 			      		<label>Have you been diagnosed positive for ABC test ?</label>
 			      		</div>
@@ -120,6 +130,7 @@ class NewTest extends Component {
 			                   onChange={this._handlediagnosis} /> No
 			               </label>
 			             </div>
+				    </div>}
 				
 
 				{showTextBox &&
