@@ -32,22 +32,16 @@ import axios from 'axios'
 					                      </Link>
 					  			<ul className='list-group list-group-flush'>
 					                        {providers.map(provider => (
-									                        <Link
+									<Link
 									                          className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-									                          to={`/${provider.id}`}
+									                    
 									                          key={provider.id}
 									                        >
 									                          {provider.name}
-									                          <span column-gap="40px" className='badge badge-primary badge-pill'>
-									                            {provider.city}
+									                          <span className='badge badge-primary badge-pill'>
+									                            {provider.city} - {provider.state}
 									                          </span>
-												  <span column-gap="40px" className='badge badge-primary badge-pill'>
-									                            {provider.state}
-									                          </span>
-												  <span className='badge badge-primary badge-pill'>
-									                            {provider.speciality}
-									                          </span>
-									                        </Link>
+									</Link>
 									                      ))}
 					                      </ul>
 					                    </div>

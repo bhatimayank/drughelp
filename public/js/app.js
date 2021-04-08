@@ -2519,18 +2519,9 @@ var ProviderList = /*#__PURE__*/function (_Component) {
                   children: providers.map(function (provider) {
                     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
                       className: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
-                      to: "/".concat(provider.id),
-                      children: [provider.name, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                        "column-gap": "40px",
+                      children: [provider.name, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
                         className: "badge badge-primary badge-pill",
-                        children: provider.city
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                        "column-gap": "40px",
-                        className: "badge badge-primary badge-pill",
-                        children: provider.state
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                        className: "badge badge-primary badge-pill",
-                        children: provider.speciality
+                        children: [provider.city, " - ", provider.state]
                       })]
                     }, provider.id);
                   })
