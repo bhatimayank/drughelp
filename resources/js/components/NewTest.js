@@ -94,7 +94,7 @@ class NewTest extends Component {
 		      const { showHyperRadioBox } = this.state;
 		      const { showHyperTextBox } = this.state;
 		      const { showConsultTextBox } = this.state;
-		      const { showResultTextBox } = this.state;
+		      const { showResultsTextBox } = this.state;
 		      const { showDiagnosedRadioBox } = this.state;
 
 		      return (

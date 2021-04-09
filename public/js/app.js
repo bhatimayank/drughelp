@@ -2017,7 +2017,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
 /* harmony import */ var _ProviderList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProviderList */ "./resources/js/components/ProviderList.js");
-/* harmony import */ var _NewTest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NewTest */ "./resources/js/components/NewTest.js");
+/* harmony import */ var _MasterForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./MasterForm */ "./resources/js/components/MasterForm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -2073,7 +2073,7 @@ var App = /*#__PURE__*/function (_Component) {
               component: _ProviderList__WEBPACK_IMPORTED_MODULE_3__.default
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
               path: "/checkfortest",
-              component: _NewTest__WEBPACK_IMPORTED_MODULE_4__.default
+              component: _MasterForm__WEBPACK_IMPORTED_MODULE_4__.default
             })]
           })]
         })
@@ -2124,10 +2124,10 @@ var Header = function Header() {
 
 /***/ }),
 
-/***/ "./resources/js/components/NewTest.js":
-/*!********************************************!*\
-  !*** ./resources/js/components/NewTest.js ***!
-  \********************************************/
+/***/ "./resources/js/components/MasterForm.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/MasterForm.js ***!
+  \***********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2166,124 +2166,169 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var NewTest = /*#__PURE__*/function (_Component) {
-  _inherits(NewTest, _Component);
 
-  var _super = _createSuper(NewTest);
+var MasterForm = /*#__PURE__*/function (_Component) {
+  _inherits(MasterForm, _Component);
 
-  function NewTest(props) {
+  var _super = _createSuper(MasterForm);
+
+  function MasterForm(props) {
     var _this;
 
-    _classCallCheck(this, NewTest);
+    _classCallCheck(this, MasterForm);
 
     _this = _super.call(this, props);
     _this.state = {
+      currentStep: 1,
       isdiagnosed: null,
       isdiabetic: null,
-      hypertension: null,
-      showResults: null,
-      showTextBox: false,
-      showRadioBox: false,
-      showDiagnosedRadioBox: true,
+      ishyper: null,
+      showAgeTextBox: false,
+      showDiabeticRadioBox: false,
       showHyperRadioBox: false,
-      showHyperTextBox: false,
+      showResultsTextBox: false,
       showConsultTextBox: false,
-      showResultTextBox: false
+      showFinalResultsTextBox: false
     };
-    _this._handlediagnosis = _this._handlediagnosis.bind(_assertThisInitialized(_this));
-    _this._handlehyper = _this._handlehyper.bind(_assertThisInitialized(_this));
-    _this._handlediabetic = _this._handlediabetic.bind(_assertThisInitialized(_this));
+    _this._next = _this._next.bind(_assertThisInitialized(_this));
+    _this._prev = _this._prev.bind(_assertThisInitialized(_this));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(NewTest, [{
-    key: "_handlediagnosis",
-    value: function _handlediagnosis(event) {
-      var isdiagnosed = event.currentTarget.value === 'true' ? true : false;
-      this.setState({
-        isdiagnosed: isdiagnosed
-      });
-      this.setState({
-        showTextBox: isdiagnosed,
-        isdiabetic: null,
-        showHyperRadioBox: false,
-        showHyperTextBox: false
-      });
-
-      if (!isdiagnosed) {
-        this.setState({
-          showRadioBox: true
-        });
-      } else {
-        this.setState({
-          showRadioBox: false
-        });
+  _createClass(MasterForm, [{
+    key: "handleChange",
+    value: function handleChange(event) {
+      var currentStep = this.state.currentStep;
+      {
+        console.log(currentStep);
       }
+
+      if (currentStep === 1) {
+        {
+          console.log('here');
+        }
+        ;
+        var isdiagnosed = event.target.value === 'true' ? true : false;
+        this.setState({
+          isdiagnosed: isdiagnosed,
+          showAgeTextBox: isdiagnosed
+        });
+
+        if (!isdiagnosed) {
+          this.setState({
+            showDiabeticRadioBox: true
+          });
+        } else {
+          this.setState({
+            showDiabeticRadioBox: false
+          });
+        }
+      }
+
+      if (currentStep === 2) {
+        {
+          console.log('in 2');
+        }
+        ;
+        var isdiabetic = event.target.value === 'true' ? true : false;
+        this.setState({
+          isdiabetic: isdiabetic,
+          showResultsTextBox: isdiabetic
+        });
+
+        if (!isdiabetic) {
+          this.setState({
+            showHyperRadioBox: true
+          });
+        } else {
+          this.setState({
+            showHyperRadioBox: false
+          });
+        }
+      }
+
+      if (currentStep === 3) {
+        var ishyper = event.target.value === 'true' ? true : false;
+        this.setState({
+          ishyper: ishyper,
+          showConsultTextBox: ishyper
+        });
+
+        if (!ishyper) {
+          this.setState({
+            showFinalResultsTextBox: true
+          });
+        } else {
+          this.setState({
+            showFinalResultsTextBox: false
+          });
+        }
+      }
+
+      {
+        console.log('end');
+      }
+      ;
     }
   }, {
-    key: "_handlediabetic",
-    value: function _handlediabetic(event) {
-      var isdiabetic = event.currentTarget.value === 'true' ? true : false;
+    key: "_next",
+    value: function _next() {
+      var currentStep = this.state.currentStep;
+      currentStep = currentStep >= 3 ? 4 : currentStep + 1;
       this.setState({
-        isdiabetic: isdiabetic
+        currentStep: currentStep
       });
-      this.setState({
-        showDiagnosedRadioBox: false,
-        isdiagnosed: null,
-        showHyperTextBox: isdiabetic,
-        hypertension: null,
-        showConsultTextBox: false,
-        showResultTextBox: false
-      });
-
-      if (!isdiabetic) {
-        this.setState({
-          showHyperRadioBox: true
-        });
-      } else {
-        this.setState({
-          showHyperRadioBox: false
-        });
-      }
     }
   }, {
-    key: "_handlehyper",
-    value: function _handlehyper(event) {
-      var hypertension = event.currentTarget.value === 'true' ? true : false;
+    key: "_prev",
+    value: function _prev() {
+      var currentStep = this.state.currentStep;
+      currentStep = currentStep <= 1 ? 1 : currentStep - 1;
       this.setState({
-        hypertension: hypertension
+        currentStep: currentStep
       });
-      this.setState({
-        showConsultTextBox: hypertension,
-        showDiagnosedRadioBox: false,
-        showRadioBox: false,
-        isdiagnosed: null,
-        isdiabetic: null
-      });
+    }
+    /*
+     * * the functions for our button
+     * */
 
-      if (!hypertension) {
-        this.setState({
-          showResultTextBox: true
-        });
-      } else {
-        this.setState({
-          showResultTextBox: false
+  }, {
+    key: "previousButton",
+    value: function previousButton() {
+      var currentStep = this.state.currentStep;
+
+      if (currentStep !== 1) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "btn btn-secondary",
+          type: "button",
+          onClick: this._prev,
+          children: "Previous"
         });
       }
+
+      return null;
+    }
+  }, {
+    key: "nextButton",
+    value: function nextButton() {
+      var currentStep = this.state.currentStep;
+
+      if (currentStep < 4) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "btn btn-primary float-right",
+          type: "button",
+          onClick: this._next,
+          children: "Next"
+        });
+      }
+
+      return null;
     }
   }, {
     key: "render",
     value: function render() {
       var isdiagnosed = this.state.isdiagnosed;
-      var hypertension = this.state.hypertension;
-      var showTextBox = this.state.showTextBox;
-      var showRadioBox = this.state.showRadioBox;
-      var isdiabetic = this.state.isdiabetic;
-      var showHyperRadioBox = this.state.showHyperRadioBox;
-      var showHyperTextBox = this.state.showHyperTextBox;
-      var showConsultTextBox = this.state.showConsultTextBox;
-      var showResultTextBox = this.state.showResultTextBox;
-      var showDiagnosedRadioBox = this.state.showDiagnosedRadioBox;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "container py-4",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -2297,123 +2342,32 @@ var NewTest = /*#__PURE__*/function (_Component) {
                 children: "Check for Test"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                 className: "card-body",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-                  onSubmit: this._handleSubmit,
-                  children: [showDiagnosedRadioBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "form-group",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                        children: "Have you been diagnosed positive for ABC test ?"
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "radio",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                          type: "radio",
-                          name: "isdiagnosed",
-                          value: "true",
-                          checked: isdiagnosed === true,
-                          onChange: this._handlediagnosis
-                        }), " Yes"]
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "radio",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                          type: "radio",
-                          name: "isdiagnosed",
-                          value: "false",
-                          checked: isdiagnosed === false,
-                          onChange: this._handlediagnosis
-                        }), " No"]
-                      })
-                    })]
-                  }), showTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "form-group",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                        children: " How old are you?"
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                      className: "number",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                        type: "number",
-                        name: "age"
-                      }), " Years"]
-                    })]
-                  }), showRadioBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "form-group",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                        children: "Are you diabetic ?"
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "radio",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                          type: "radio",
-                          name: "isdiabetic",
-                          value: "true",
-                          checked: isdiabetic === true,
-                          onChange: this._handlediabetic
-                        }), " Yes"]
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "radio",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                          type: "radio",
-                          name: "isdiabetic",
-                          value: "false",
-                          checked: isdiabetic === false,
-                          onChange: this._handlediabetic
-                        }), " No"]
-                      })
-                    })]
-                  }), showHyperTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                    className: "form-group",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                      children: " Your Result of the Test might be Positive."
-                    })
-                  }), showHyperRadioBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "form-group",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                        children: "Do you take hypertension medicine ?"
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "radio",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                          type: "radio",
-                          name: "hypertension",
-                          value: "true",
-                          checked: hypertension === true,
-                          onChange: this._handlehyper
-                        }), " Yes"]
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                      className: "radio",
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                          type: "radio",
-                          name: "hypertension",
-                          value: "false",
-                          checked: hypertension === false,
-                          onChange: this._handlehyper
-                        }), " No"]
-                      })
-                    })]
-                  }), showConsultTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                    className: "form-group",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                      children: " Please Consult your doctor."
-                    })
-                  }), showResultTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                    className: "form-group",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                      children: " Your Result of the Test might be Positive."
-                    })
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+                    children: ["Step ", this.state.currentStep, " "]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+                    onSubmit: this.handleSubmit,
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Step1, {
+                      currentStep: this.state.currentStep,
+                      handleChange: this.handleChange,
+                      isdiagnosed: this.state.isdiagnosed
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Step2, {
+                      currentStep: this.state.currentStep,
+                      handleChange: this.handleChange,
+                      isdiabetic: this.state.isdiabetic,
+                      showAgeTextBox: this.state.showAgeTextBox,
+                      showDiabeticRadioBox: this.state.showDiabeticRadioBox
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Step3, {
+                      currentStep: this.state.currentStep,
+                      handleChange: this.handleChange,
+                      ishyper: this.state.ishyper,
+                      showResultsTextBox: this.state.showResultsTextBox,
+                      showHyperRadioBox: this.state.showHyperRadioBox
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Step4, {
+                      currentStep: this.state.currentStep,
+                      showFinalResultsTextBox: this.state.showFinalResultsTextBox,
+                      showConsultTextBox: this.state.showConsultTextBox
+                    }), this.previousButton(), this.nextButton()]
                   })]
                 })
               })]
@@ -2424,10 +2378,168 @@ var NewTest = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return NewTest;
+  return MasterForm;
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewTest);
+function Step1(props) {
+  if (props.currentStep !== 1) {
+    return null;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "form-group",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          children: "Have you been diagnosed positive for ABC test ?"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "radio",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "radio",
+            name: "isdiagnosed",
+            value: "true",
+            checked: props.isdiagnosed === true,
+            onChange: props.handleChange
+          }), " Yes"]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "radio",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "radio",
+            name: "isdiagnosed",
+            value: "false",
+            checked: props.isdiagnosed === false,
+            onChange: props.handleChange
+          }), " No"]
+        })
+      })]
+    })
+  });
+}
+
+function Step2(props) {
+  if (props.currentStep !== 2) {
+    return null;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [props.showAgeTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "form-group",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          children: " How old are you?"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "radio",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "number",
+          name: "age"
+        }), " Years"]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "form-group",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {})]
+    }), props.showDiabeticRadioBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "form-group",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          children: "Are you diabetic ?"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "radio",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "radio",
+            name: "isdiabetic",
+            value: "true",
+            checked: props.isdiabetic === true,
+            onChange: props.handleChange
+          }), " Yes"]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "radio",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "radio",
+            name: "isdiabetic",
+            value: "false",
+            checked: props.isdiabetic === false,
+            onChange: props.handleChange
+          }), " No"]
+        })
+      })]
+    })]
+  });
+}
+
+function Step3(props) {
+  if (props.currentStep !== 3) {
+    return null;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [props.showResultsTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "form-group",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+        children: " Your results!"
+      })
+    }), props.showHyperRadioBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "form-group",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+          children: "Do you take HyperTension Medicine ?"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "radio",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "radio",
+            name: "ishyper",
+            value: "true",
+            checked: props.ishyper === true,
+            onChange: props.handleChange
+          }), " Yes"]
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "radio",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "radio",
+            name: "ishyper",
+            value: "false",
+            checked: props.ishyper === false,
+            onChange: props.handleChange
+          }), " No"]
+        })
+      })]
+    })]
+  });
+}
+
+function Step4(props) {
+  if (props.currentStep != 4) {
+    return null;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [props.showConsultTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "form-group",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+        children: "Please consult your doctor."
+      })
+    }), props.showFinalResultsTextBox && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "form-goup",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+        children: "Your Results!"
+      })
+    })]
+  });
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MasterForm);
 
 /***/ }),
 

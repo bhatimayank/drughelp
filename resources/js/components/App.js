@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Header from './Header'
 import ProviderList from './ProviderList'
-import NewTest from './NewTest'
+import MasterForm from './MasterForm'
+
 class App extends Component {
 	      render () {
 		              return (
@@ -12,7 +13,7 @@ class App extends Component {
 				                    <Header />
 				                    <Switch>
 				                      <Route exact path='/' component={ProviderList} />
-				      		      <Route path='/checkfortest' component={NewTest} />
+				      		      <Route path='/checkfortest' component={MasterForm} />
 				                    </Switch>
 				                  </div>
 				                </BrowserRouter>
